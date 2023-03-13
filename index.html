@@ -21,7 +21,8 @@
 
   <div class="wrapper d-flex align-items-stretch">
     <nav id="sidebar" class="active border-right">
-      <button type="button" id="sidebarCollapse" class=" navbar-toggler mt-3 mb-2" style="border-color: #007bff;color: #fff;">
+      <button type="button" id="sidebarCollapse" class=" navbar-toggler mt-3 mb-2"
+        style="border-color: #007bff;color: #fff;">
         <i class="fa fa-bars"></i>
         <span class="sr-only">Toggle Menu</span>
       </button>
@@ -194,20 +195,48 @@
       </footer>
 
     </div>
-
+    <!-- Sidebar Kanan -->
     <nav id="sidebar3" class="active border-right">
       <!-- <h1><a href="index.html" class="logo">M.</a></h1> -->
-      <button type="button" id="sidebarCollapse2" style="border-color: #007bff;color: #fff;" class="mt-3 mb-2 navbar-toggler hidebtna">
+      <button type="button" id="sidebarCollapse2" style="border-color: #007bff;color: #fff;"
+        class="mt-3 mb-2 navbar-toggler hidebtna">
         <i class="fa fa-bars"></i>
         <span class="sr-only">Toggle Menu</span>
       </button>
       <ul class="list-unstyled components mb-5" id="accordion">
         <li class="active">
-          <a href="#"><span class="fa fa-home"></span> Home</a>
+          <a data-toggle="collapse" class="iconkanans" href="#multiCollapseExample1" role="button" aria-expanded="false"
+            aria-controls="multiCollapseExample1"><span class="fa fa-cloud"></span> Weather</a>
         </li>
+        <div class="collapse multi-collapse" id="multiCollapseExample1">
+          <div class="card card-body text-muted">
+            <a class="weatherwidget-io" href="https://forecast7.com/en/n6d21106d85/jakarta/" data-label_1="JAKARTA"
+              data-label_2="WEATHER" data-days="3" data-theme="dark">JAKARTA WEATHER</a>
+          </div>
+        </div>
         <li>
-          <a href="#"><span class="fa fa-user"></span> About</a>
+          <a class="iconkanans" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false"
+            aria-controls="multiCollapseExample2"><span class="fa fa-tasks"></span> Task <span class="badge badge-danger ml-2" id="taskbadge">0</a>
         </li>
+        <div class="collapse multi-collapse" id="multiCollapseExample2">
+          <div class="card card-body text-muted">
+            <form id="task-form" class="mb-3">
+              <div class="form-row">
+                <div class="col-9">
+                  <input type="text" id="task-input" class="form-control" placeholder="Enter task">
+                </div>
+                <div class="col-3">
+                  <button type="submit" class="btn btn-sm btn-primary btn-block">Add</button>
+                </div>
+              </div>
+            </form>
+
+            <!-- Task List -->
+            <ul id="task-list" class="list-group">
+              <!-- Tasks will be added dynamically here -->
+            </ul>
+          </div>
+        </div>
         <li>
           <a href="#collapse-blog" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span
               class="fa fa-sticky-note"></span> Blog<span class="badge badge-primary ml-2">2</span></a>
@@ -242,7 +271,9 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
-
+  <script>
+    !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
+  </script>
   <script src="js/main.js"></script>
 
 </body>

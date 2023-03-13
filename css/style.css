@@ -12136,7 +12136,8 @@ a[data-toggle="collapse"] {
 /* SideBar 3 */
 
 #sidebar3 {
-  min-width: 270px;
+  /* min-width: 270px; */
+  min-width: 420px;
   max-width: 270px;
   background: #2C3333;
   color: #fff;

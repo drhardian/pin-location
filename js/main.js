@@ -20,19 +20,29 @@
 
 	$('#sidebarCollapse2').on('click', function () {
 		$('#sidebar3').toggleClass('active');
-		  // Dapatkan elemen yang akan diperiksa
-		  var myDiv = document.getElementById("sidebar3"); 
+		// Dapatkan elemen yang akan diperiksa
+		var myDiv = document.getElementById("sidebar3");
 		const sidebar = document.getElementById('sidebarCollapse2');
 
-		  // Periksa apakah elemen memiliki kelas "active"
-		  if (!myDiv.classList.contains("active")) {
+		// Periksa apakah elemen memiliki kelas "active"
+		if (!myDiv.classList.contains("active")) {
 			// Jika tidak memiliki kelas "active", tambahkan CSS lain
 			sidebar.classList.add('btnkanan');
-		}else{
+		} else {
 			sidebar.classList.remove('btnkanan');
 
 		}
+		// pilih semua elemen dengan kelas multi-collapse
+		const multiCollapses = document.querySelectorAll('.multi-collapse');
+
+		// loop melalui semua elemen multi-collapse dan hapus kelas 'show'
+		multiCollapses.forEach(multiCollapse => {
+			multiCollapse.classList.remove('show');
+		});
 	});
+
+
+
 
 
 })(jQuery);
@@ -169,3 +179,140 @@ humidity. ${dateStr}, ${timeStr}`;
 
 // memanggil fungsi untuk menampilkan informasi cuaca pada saat halaman dimuat
 displayWeatherInfo();
+
+// pilih elemen dengan kelas multi-collapse
+const activesidebar3 = document.querySelectorAll('.iconkanans');
+
+activesidebar3.forEach(myElement => {
+	// tambahkan event listener ke elemen tersebut
+	myElement.addEventListener('click', function () {
+		var myDiv = document.getElementById("sidebar3");
+		if (!myDiv.classList.contains("active")) {
+			var myDiv = document.getElementById("sidebar3");
+			const sidebar = document.getElementById('sidebarCollapse2');
+			// Periksa apakah elemen memiliki kelas "active"
+			if (!myDiv.classList.contains("active")) {
+				// Jika tidak memiliki kelas "active", tambahkan CSS lain
+				sidebar.classList.add('btnkanan');
+			} else {
+				sidebar.classList.remove('btnkanan');
+			}
+		} else {
+			$('#sidebar3').toggleClass('active');
+			var myDiv = document.getElementById("sidebar3");
+			const sidebar = document.getElementById('sidebarCollapse2');
+			// Periksa apakah elemen memiliki kelas "active"
+			if (!myDiv.classList.contains("active")) {
+				// Jika tidak memiliki kelas "active", tambahkan CSS lain
+				sidebar.classList.add('btnkanan');
+			} else {
+				sidebar.classList.remove('btnkanan');
+			}
+		}
+	});
+});
+
+
+// Get references to the HTML elements we'll need
+const taskForm = document.querySelector('#task-form');
+const taskInput = document.querySelector('#task-input');
+const taskList = document.querySelector('#task-list');
+
+// Create an array to hold our tasks
+let tasks = [];
+
+// Add event listener to the form submission
+taskForm.addEventListener('submit', (event) => {
+	// Prevent the default form submission behavior
+	event.preventDefault();
+
+	// Get the user input and create a new task object
+	const taskName = taskInput.value;
+	const task = { name: taskName, completed: false };
+
+	// Add the task to the array and clear the input
+	tasks.push(task);
+	taskInput.value = '';
+
+	// Render the tasks
+	renderTasks();
+});
+
+
+// Find the active task
+function findActiveTask() {
+	return tasks.filter(task => !task.completed);
+}
+
+// Render the list of tasks
+function renderTasks() {
+	// Clear the task list
+	taskList.innerHTML = '';
+	// Filter the completed and uncompleted tasks
+	const completedTasks = tasks.filter(task => task.completed);
+	const uncompletedTasks = tasks.filter(task => !task.completed);
+
+	// Concatenate the uncompleted tasks and completed tasks
+	const sortedTasks = uncompletedTasks.concat(completedTasks);
+	// Loop through the tasks and create a list item for each one
+	sortedTasks.forEach((task, index) => {
+		const li = document.createElement('li');
+		li.className = 'list-group-item';
+
+		// Add a checkbox and label for the task name
+		const checkbox = document.createElement('input');
+		checkbox.type = 'checkbox';
+		checkbox.checked = task.completed;
+		checkbox.addEventListener('change', () => {
+			// Toggle the completed status of the task
+			task.completed = !task.completed;
+
+			if (task.completed) {
+				label.style.textDecoration = 'line-through';
+			} else {
+				label.style.textDecoration = 'none';
+			}
+			// Render the tasks again
+			renderTasks();
+		});
+
+		const label = document.createElement('label');
+		label.textContent = task.name;
+		label.className = 'small ml-2'; // Add this line
+
+		if (task.completed) {
+			label.style.textDecoration = 'line-through';
+		}
+
+		// Add a delete button for the task
+		const deleteBtn = document.createElement('button');
+		deleteBtn.className = 'btn btn-danger btn-sm float-right ml-2 small';
+		deleteBtn.textContent = 'Delete';
+		deleteBtn.addEventListener('click', () => {
+			// Remove the task from the array
+			tasks.splice(index, 1);
+
+			// Render the tasks again
+			renderTasks();
+		});
+
+		// Append the elements to the list item and the list item to the task list
+		li.appendChild(checkbox);
+		li.appendChild(label);
+		li.appendChild(deleteBtn);
+		taskList.appendChild(li);
+	});
+	// Call the findActiveTask function to get the active task
+	const activeTask = findActiveTask();
+
+	const taskBadge = document.querySelector('#taskbadge');
+	taskBadge.textContent = activeTask.length;
+
+}
+
+// Call the renderTasks function to initialize the task list
+renderTasks();
+
+
+
+
