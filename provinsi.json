@@ -1,0 +1,86 @@
+{
+  "id": "0",
+  "text": "Pulau Jawa",
+  "children": [
+    {
+      "id": "1",
+      "text": "Jawa Barat",
+      "children": [
+        {
+          "id": "11",
+          "text": "Bandung",
+          "children": [
+            {
+              "id": "66",
+              "parent": 11,
+              "text": "Bandung Kota",
+              "children": [
+                {
+                  "id": "77",
+                  "parent": 66,
+                  "text": "Kabupaten Bandung"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "12",
+          "text": "Bogor"
+        },
+        {
+          "id": "13",
+          "text": "Depok"
+        },
+        {
+          "id": "14",
+          "text": "Cimahi"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "text": "Jawa Tengah",
+      "children": [
+        {
+          "id": "21",
+          "text": "Semarang"
+        },
+        {
+          "id": "22",
+          "text": "Surakarta"
+        },
+        {
+          "id": "23",
+          "text": "Yogyakarta"
+        },
+        {
+          "id": "24",
+          "text": "Magelang"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "text": "Jawa Timur",
+      "children": [
+        {
+          "id": "31",
+          "text": "Surabaya"
+        },
+        {
+          "id": "32",
+          "text": "Malang"
+        },
+        {
+          "id": "33",
+          "text": "Mojokerto"
+        },
+        {
+          "id": "34",
+          "text": "Madiun"
+        }
+      ]
+    }
+  ]
+}
