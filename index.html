@@ -13,8 +13,16 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
     integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/style.min.css" />
+  <link
+  rel="stylesheet"
+  href="https://cdn3.devexpress.com/jslib/22.2.3/css/dx.light.css"
+/>
   <link rel="stylesheet" href="css/style.css">
-
+<style>
+  #treelist {
+  font-size: 13px;
+}
+</style>
 </head>
 
 <body>
@@ -55,7 +63,7 @@
       </div>
     </nav>
 
-    <nav id="sidebar2" class="p-3 sidebar2mobile">
+    <nav id="sidebar2" class="p-1 sidebar2mobile">
 
       <div id="select_node" class="d-flex justify-content-center">
         <button id="random" class="btn btn-info mr-1"><i class="fas fa-random"></i></button>
@@ -77,20 +85,37 @@
 
       </div>
       <!-- Create a div element for the tree -->
-      <div class="d-flex justify-content-center">
-        <div id="tree"></div>
-
+      <div class="container-fluid mt-2">
+        <div class="row">
+          <div class="col-md-12">
+              <div id="treelist"></div>
+              <div id="context-menu"></div>
+          </div>
+      </div>
       </div>
     </nav>
+
 
     <!-- Page Content  -->
     <div id="content" class="p-md-4">
 
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark navrounded">
+        <!-- <button type="button" id="sidebarCollapse" class=" navbar-toggler mt-3 mb-2"
+          style="border-color: #007bff;color: #fff;">
+          <i class="fa fa-bars"></i>
+          <span class="sr-only">Toggle Menu</span>
+        </button> -->
         <div class="container-fluid">
-          <div class="app-header__logo">
+
+          <a class="navbar-brand" href="#" style="display: grid; grid-template-columns: auto 1fr">
+
+            <img src="https://cms.ptcs.co.id/assets/images/ptcs.png" width="120" height="60"
+              class="d-inline-block align-top" alt="Logo">
+            <h5 class="text-white font-weight-bold mr-2 mt-2 ml-3">Data Analityc System </h3>
+          </a>
+          <!-- <div class="app-header__logo">
             <div class="logo-src"></div>
-          </div>
+          </div> -->
           <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -98,30 +123,29 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
-              <h5 class="text-white font-weight-bold mr-2 mt-2 ml-3">Data Analityc System </h3>
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Services
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Service 1</a>
-                    <a class="dropdown-item" href="#">Service 2</a>
-                    <a class="dropdown-item" href="#">Service 3</a>
-                  </div>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Portfolio</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Contact</a>
-                </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  Services
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Service 1</a>
+                  <a class="dropdown-item" href="#">Service 2</a>
+                  <a class="dropdown-item" href="#">Service 3</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Portfolio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+              </li>
             </ul>
             <ul class="nav navbar-nav nav-pills nav-pillsx  ml-auto mr-5">
               <li class="nav-item mr-4">
@@ -134,25 +158,42 @@
                 <a class="nav-link" data-toggle="tab" href="#tab3">Tab 3</a>
               </li>
             </ul>
-            <ul class="nav navbar-nav nav-pills nav-pillsx  ml-auto">
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-4" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
+                    width="40" height="40" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Dashboard</a>
+                  <a class="dropdown-item" href="#">Edit Profile</a>
+                  <a class="dropdown-item" href="#">Log Out</a>
+                </div>
+              </li>
+            </ul>
+            <!-- <ul class="nav navbar-nav nav-pills nav-pillsx  ml-auto">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-4"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbar-list-4">
                 <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
+                        width="40" height="40" class="rounded-circle">
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                       <a class="dropdown-item" href="#">Dashboard</a>
                       <a class="dropdown-item" href="#">Edit Profile</a>
                       <a class="dropdown-item" href="#">Log Out</a>
                     </div>
-                  </li>   
+                  </li>
                 </ul>
               </div>
-            </ul>
+            </ul> -->
 
           </div>
 
@@ -236,7 +277,8 @@
         </div>
         <li>
           <a class="iconkanans" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false"
-            aria-controls="multiCollapseExample2"><span class="fa fa-tasks"></span> Task <span class="badge badge-danger ml-2" id="taskbadge">0</a>
+            aria-controls="multiCollapseExample2"><span class="fa fa-tasks"></span> Task <span
+              class="badge badge-danger ml-2" id="taskbadge">0</a>
         </li>
         <div class="collapse multi-collapse" id="multiCollapseExample2">
           <div class="card card-body text-muted">
@@ -291,10 +333,13 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
+  <script src="https://cdn3.devexpress.com/jslib/22.2.3/js/dx.all.js"></script>
+  <script src="js/script.js"></script>
   <script>
     !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
   </script>
   <script src="js/main.js"></script>
+
 
 </body>
 
