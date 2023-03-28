@@ -12326,3 +12326,74 @@ a[data-toggle="collapse"] {
 .jstree-anchor {
   font-size: .88rem;
 }
+
+
+    .float {
+      color: #000;
+      position: absolute;
+      width: 580px;
+        /* height: 200px; */
+      top: 110px;
+      right: 88px;
+      transform: translateX(900px);
+      /* background: #53b2a7; */
+      transition-duration: .3s;
+      z-index: 3;
+    }
+
+    .float.active-float {
+      transform: translateX(0px);
+    }
+
+    .float h3 {
+      position: relative;
+      padding: 35px 10px 10px 10px;
+      text-align: center;
+      background: #27897c;
+      margin: 0;
+      font-size: 16px;
+      font-weight: normal;
+    }
+
+    .float h3 span {
+      position: absolute;
+      top: 5px;
+      left: -5px;
+      background: #fed364;
+      font-size: 12px;
+      padding: 5px 10px;
+      color: #333;
+    }
+
+    .float p {
+      margin: 0;
+      padding: 20px 10px;
+      font-size: 14px;
+      line-height: 18px;
+      text-align: justify-content;
+    }
+
+    .float .event-details-btn {
+      display: inline-block;
+      background-color: #FF7651;
+      text-align: center;
+      width: 50%;
+      padding: 10px 0;
+      color: #FFF;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 12px;
+      float: left;
+    }
+
+    .float .event-close-btn {
+      display: inline-block;
+      background-color: #333;
+      text-align: center;
+      width: 100%;
+      padding: 10px 0;
+      color: #FFF;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 12px;
+    }

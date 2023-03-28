@@ -324,3 +324,68 @@ $(document).ready(function () {
 		console.log("x: " + x + ", y: " + y);
 	});
 }); 
+
+// FLOATING
+
+(function($) {
+    $.fn.sideFollow = function(dtime) {
+
+        var floating = $(this);
+        var originalTop = parseInt($(this).css('top'));
+
+        dtime ? dtime = dtime : dtime = 750;
+
+        goFollow(); 
+
+        $(window).scroll(function() {
+            goFollow();
+        });
+
+        function goFollow() {
+            var scrollTop = $(this).scrollTop();
+            floating.animate({
+                top: originalTop + scrollTop
+            }, {
+                duration: dtime,
+                queue: false
+            });
+        }
+
+    }
+    
+    $(document).ready(function(){
+    //   $('.float').addClass('active-float');
+    });
+  
+    $('.event-close-btn').click(function(){
+      $('.float').removeClass('active-float');
+    });
+  
+  
+})(jQuery);
+
+
+1
+$(".float").sideFollow();
+
+// end FLOATING
+
+function showDataDetail(id){
+	var row = $(button).closest('tr');
+    var taskId = row.find('td:eq(0)').text();
+    var assignedEmployeeId = row.find('td:eq(1)').text();
+    var taskSubject = row.find('td:eq(2)').text();
+    var taskStartDate = row.find('td:eq(3)').text();
+    var taskDueDate = row.find('td:eq(4)').text();
+    var taskStatus = row.find('td:eq(5)').text();
+    var taskPriority = row.find('td:eq(6)').text();
+    var taskCompletion = row.find('td:eq(7)').text();
+    var taskParentId = row.find('td:eq(8)').text();
+    
+    // Do something with the data, such as displaying it in an alert
+    alert('Task ID: ' + taskId + '\nAssigned Employee ID: ' + assignedEmployeeId 
+          + '\nTask Subject: ' + taskSubject + '\nTask Start Date: ' + taskStartDate 
+          + '\nTask Due Date: ' + taskDueDate + '\nTask Status: ' + taskStatus 
+          + '\nTask Priority: ' + taskPriority + '\nTask Completion: ' + taskCompletion 
+          + '\nTask Parent ID: ' + taskParentId);
+}

@@ -223,7 +223,8 @@ function buildTableRows(data) {
     $.each(data, function (index, item) {
         var row = $('<tr>').appendTo($('#tobrak tbody'));
         $('<td>').text(item.Task_ID).appendTo(row);
-        $('<td>').text(item.Task_Assigned_Employee_ID).appendTo(row);
+        var cell2 = $('<td>').text(item.Task_Assigned_Employee_ID).appendTo(row);
+        $('<button>').addClass('btn btn-sm btn-primary float-right').text('Button').attr('onclick', 'showDataDetail(this)').appendTo(cell2);
         $('<td>').text(item.Task_Subject).appendTo(row);
         $('<td>').text(item.Task_Start_Date).appendTo(row);
         $('<td>').text(item.Task_Due_Date).appendTo(row);
@@ -317,34 +318,34 @@ function createPoint(data) {
     console.log(data);
 
     const popovers = data.map((item) => `
-<div id="content${item.Task_ID}" class="content ${item.position}">
-  <div class="head">
-    <a href="#" class="exit"><img src="https://www.jqueryscript.net/demo/Image-Annotation-Plugin-Scalize/img/close.png" alt="" /></a>
-    <h6 class="title">${item.Task_Subject}</h6>
-  </div>
-  <div class="body">${item.Task_Subject}</div>
-</div>
-`).join("");
+    <div id="content${item.Task_ID}" class="content ${item.position}">
+    <div class="head">
+        <a href="#" class="exit"><img src="https://www.jqueryscript.net/demo/Image-Annotation-Plugin-Scalize/img/close.png" alt="" /></a>
+        <h6 class="title">${item.Task_Subject}</h6>
+    </div>
+    <div class="body">${item.Task_Subject}</div>
+    </div>
+    `).join("");
     // create item points
     const points = data.flatMap((item) =>
        item.points ? item.points.map((point) => `
-  <div class="item-point" data-top="${point.top}" data-left="${point.left}" data-popover="${point.popover}">
-    <div><a href="#" class="toggle"></a></div>
-  </div>
-`):'' ).join("");
+        <div class="item-point" data-top="${point.top}" data-left="${point.left}" data-popover="${point.popover}">
+            <div><a href="#" class="toggle"></a></div>
+        </div>
+        `):'' ).join("");
 
     // create final HTML code
     const html = `
-<!-- Start Popover Template -->
-${popovers}
-<!-- End Popover Template -->
+    <!-- Start Popover Template -->
+    ${popovers}
+    <!-- End Popover Template -->
 
-<!-- https://www.jqueryscript.net/demo/Image-Annotation-Plugin-Scalize/img/jacket.png -->
-<img src="pid.png" alt="" class="target" id="gambar-coordinate">
-<div class='wrap-selector'>
-${points}
-</div>
-`;
+    <!-- https://www.jqueryscript.net/demo/Image-Annotation-Plugin-Scalize/img/jacket.png -->
+    <img src="pid.png" alt="" class="target" id="gambar-coordinate">
+    <div class='wrap-selector'>
+    ${points}
+    </div>
+    `;
 
     $('#imagepoint').empty();
     $('#imagepoint').html(html);
