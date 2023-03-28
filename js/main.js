@@ -317,13 +317,7 @@ renderTasks();
 
 
 $(document).ready(function () {
-	$('.scalize').scalize({
-		styleSelector: 'circle',
-		animationPopoverIn: 'flipInY',
-		animationPopoverOut: 'flipOutY',
-		animationSelector: 'pulse2'
-	});
-
+	scalizeInit();
 	$('.scalize').click(function (e) {
 		var x = e.pageX - $(this).offset().left;
 		var y = e.pageY - $(this).offset().top;
