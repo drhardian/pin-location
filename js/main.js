@@ -323,45 +323,46 @@ $(document).ready(function () {
 		var y = e.pageY - $(this).offset().top;
 		console.log("x: " + x + ", y: " + y);
 	});
-}); 
+});
 
 // FLOATING
 
-(function($) {
-    $.fn.sideFollow = function(dtime) {
+(function ($) {
+	$.fn.sideFollow = function (dtime) {
 
-        var floating = $(this);
-        var originalTop = parseInt($(this).css('top'));
+		var floating = $(this);
+		var originalTop = parseInt($(this).css('top'));
 
-        dtime ? dtime = dtime : dtime = 750;
+		dtime ? dtime = dtime : dtime = 750;
 
-        goFollow(); 
+		goFollow();
 
-        $(window).scroll(function() {
-            goFollow();
-        });
+		$(window).scroll(function () {
+			goFollow();
+		});
 
-        function goFollow() {
-            var scrollTop = $(this).scrollTop();
-            floating.animate({
-                top: originalTop + scrollTop
-            }, {
-                duration: dtime,
-                queue: false
-            });
-        }
+		function goFollow() {
+			var scrollTop = $(this).scrollTop();
+			floating.animate({
+				top: originalTop + scrollTop
+			}, {
+				duration: dtime,
+				queue: false
+			});
+		}
 
-    }
-    
-    $(document).ready(function(){
-    //   $('.float').addClass('active-float');
-    });
-  
-    $('.event-close-btn').click(function(){
-      $('.float').removeClass('active-float');
-    });
-  
-  
+	}
+
+	$(document).ready(function () {
+		//   $('.float').addClass('active-float');
+
+	});
+
+	$('.event-close-btn').click(function () {
+		$('.float').removeClass('active-float');
+	});
+
+
 })(jQuery);
 
 
@@ -369,23 +370,56 @@ $(document).ready(function () {
 $(".float").sideFollow();
 
 // end FLOATING
+var nilaiButton = '';
 
-function showDataDetail(id){
-	var row = $(button).closest('tr');
-    var taskId = row.find('td:eq(0)').text();
-    var assignedEmployeeId = row.find('td:eq(1)').text();
-    var taskSubject = row.find('td:eq(2)').text();
-    var taskStartDate = row.find('td:eq(3)').text();
-    var taskDueDate = row.find('td:eq(4)').text();
-    var taskStatus = row.find('td:eq(5)').text();
-    var taskPriority = row.find('td:eq(6)').text();
-    var taskCompletion = row.find('td:eq(7)').text();
-    var taskParentId = row.find('td:eq(8)').text();
-    
-    // Do something with the data, such as displaying it in an alert
-    alert('Task ID: ' + taskId + '\nAssigned Employee ID: ' + assignedEmployeeId 
-          + '\nTask Subject: ' + taskSubject + '\nTask Start Date: ' + taskStartDate 
-          + '\nTask Due Date: ' + taskDueDate + '\nTask Status: ' + taskStatus 
-          + '\nTask Priority: ' + taskPriority + '\nTask Completion: ' + taskCompletion 
-          + '\nTask Parent ID: ' + taskParentId);
+function showDataDetail(event) {
+
+
+	var row = $(event.target).closest('tr');
+	// $(event.target).find('i').removeClass('fa-eye').addClass('fa-times');
+	var icon = row.find('i');
+	if (icon.hasClass('fa-eye')) {
+		icon.removeClass('fa-eye').addClass('fa-times text-danger');
+		// kode untuk menampilkan detail data
+	} else {
+		icon.removeClass('fa-times text-danger').addClass('fa-eye');
+		// kode untuk menyembunyikan detail data
+	}
+	if (nilaiButton != row.find('td:eq(0)').text()) {
+		var taskId = row.find('td:eq(0)').text();
+		var assignedEmployeeId = row.find('td:eq(1)').text();
+		var taskSubject = row.find('td:eq(2)').text();
+		var taskStartDate = row.find('td:eq(3)').text();
+		var taskDueDate = row.find('td:eq(4)').text();
+		var taskStatus = row.find('td:eq(5)').text();
+		var taskPriority = row.find('td:eq(6)').text();
+		var taskCompletion = row.find('td:eq(7)').text();
+		var taskParentId = row.find('td:eq(8)').text();
+
+		// Do something with the data, such as displaying it in an alert
+		// alert('Task ID: ' + taskId + '\nAssigned Employee ID: ' + assignedEmployeeId 
+		//       + '\nTask Subject: ' + taskSubject + '\nTask Start Date: ' + taskStartDate 
+		//       + '\nTask Due Date: ' + taskDueDate + '\nTask Status: ' + taskStatus 
+		//       + '\nTask Priority: ' + taskPriority + '\nTask Completion: ' + taskCompletion 
+		//       + '\nTask Parent ID: ' + taskParentId);
+		var htmls = 'Task ID: ' + taskId + '</br>Assigned Employee ID: ' + assignedEmployeeId
+			+ '</br>Task Subject: ' + taskSubject + '</br>Task Start Date: ' + taskStartDate
+			+ '</br>Task Due Date: ' + taskDueDate + '</br>Task Status: ' + taskStatus
+			+ '</br>Task Priority: ' + taskPriority + '</br>Task Completion: ' + taskCompletion
+			+ '</br>Task Parent ID: ' + taskParentId;
+		$('.float').addClass('active-float');
+		$('#floating-detail').html(htmls);
+		nilaiButton = row.find('td:eq(0)').text();
+	} else {
+		console.log('masuk sini');
+		$('#tobrak i').removeClass('fa-times text-danger').addClass('fa-eye');
+
+		$('.float').removeClass('active-float');
+		nilaiButton = '';
+
+
+	}
+
+
 }
+

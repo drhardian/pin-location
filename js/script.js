@@ -169,6 +169,7 @@ var treeList = $("#treelist")
         // autoExpandAll: true,
         columnAutoWidth: true,
         showBorders: true,
+        filterMode: 'fullBranch',
         headerFilter: {
             visible: true,
         },
@@ -178,6 +179,8 @@ var treeList = $("#treelist")
         searchPanel: {
             visible: true,
         },
+        searchValue: "",
+        searchMode: "contains",
         paging: {
             enabled: true,
             pageSize: 10,
@@ -224,7 +227,8 @@ function buildTableRows(data) {
         var row = $('<tr>').appendTo($('#tobrak tbody'));
         $('<td>').text(item.Task_ID).appendTo(row);
         var cell2 = $('<td>').text(item.Task_Assigned_Employee_ID).appendTo(row);
-        $('<button>').addClass('btn btn-sm btn-primary float-right').text('Button').attr('onclick', 'showDataDetail(this)').appendTo(cell2);
+        $('<button>').addClass('btn btn-sm btn-link float-right').on('click', function (event) { showDataDetail(event); }).appendTo(cell2).append($('<i>').addClass('fas fa-eye'));
+        ;
         $('<td>').text(item.Task_Subject).appendTo(row);
         $('<td>').text(item.Task_Start_Date).appendTo(row);
         $('<td>').text(item.Task_Due_Date).appendTo(row);
@@ -313,6 +317,7 @@ treeList.option("searchPanel.showOnlyMatches", false);
 // });
 
 
+
 function createPoint(data) {
     // create popover templates
     console.log(data);
@@ -357,6 +362,9 @@ function scalizeInit(){
 		styleSelector: 'circle',
 		animationPopoverIn: 'flipInY',
 		animationPopoverOut: 'flipOutY',
-		animationSelector: 'pulse2'
+		animationSelector: 'pulse2',
 	});
 }
+
+
+
