@@ -1,3 +1,62 @@
+
+$(document).ready(function () {
+	// Listen for click events on the navbar menu items
+	$('#sidebar .list-unstyled a').on('click', function (e) {
+		// Remove the active class from all menu items
+		$('#sidebar .list-unstyled li').removeClass('left-menu-active');
+
+		// Add the active class to the clicked menu item
+		$(this).parent().addClass('left-menu-active');
+
+		// Prevent the default link behavior
+		e.preventDefault();
+	});
+
+	var timer;
+
+	$('#search-input').on('input keyup', function () {
+		console.log('Masuk');
+		$('#tobrak').removeHighlight();
+		clearTimeout(timer);
+		// Set a new timer with a 3-second delay
+		timer = setTimeout(function () {
+			highlighted_data();
+		}, 1000);
+	});
+
+
+	function highlighted_data() {
+		// https://johannburkard.de/blog/programming/javascript/highlight-javascript-text-higlighting-jquery-plugin.html
+		$("#tobrak tbody").highlight($("#search-input").val());
+	}
+
+	!(function (d, s, id) {
+		var js,
+			fjs = d.getElementsByTagName(s)[0];
+		if (!d.getElementById(id)) {
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "https://weatherwidget.io/js/widget.min.js";
+			fjs.parentNode.insertBefore(js, fjs);
+		}
+	})(document, "script", "weatherwidget-io-js");
+
+	var div = document.getElementById("imagepoint");
+	var btn = document.querySelector(".zoom-btn");
+	var btn_out = document.querySelector(".zoom-out");
+
+	var scale = 1;
+	btn.addEventListener("click", function () {
+		scale += 0.1;
+		div.style.transform = "scale(" + scale + ")";
+	});
+
+	btn_out.addEventListener("click", function () {
+		scale -= 0.1;
+		div.style.transform = "scale(" + scale + ")";
+	});
+});
+
 (function ($) {
 
 	"use strict";
@@ -46,78 +105,6 @@
 
 
 })(jQuery);
-
-$(function () {
-	$('#tree').jstree({
-		// Use HTML data source
-		'core': {
-			'data': {
-				'url': 'provinsi.json',
-				'dataType': 'json'
-			}
-		},
-		// Enable plugins
-		'plugins': ['search', 'checkbox', 'wholerow'],
-		// Configure plugins
-		'search': {
-			// Search only node text
-			'search_leaves_only': true,
-			// Show only matching nodes
-			'show_only_matches': false,
-			// Use custom search function
-			'search_callback': function (str, node) {
-				// Case insensitive search
-				return node.text.toLowerCase().includes(str.toLowerCase());
-			}
-		},
-		'checkbox': {
-			// Tie selection to checked state
-			'tie_selection': true,
-			// Show checkboxes only on leaves
-			'whole_node': false,
-			// Keep selected state on parent nodes
-			'keep_selected_style': false
-		}
-	});
-	// Bind search input to tree search function
-	$('#search').keyup(function () {
-		var query = $(this).val();
-		$('#tree').jstree(true).search(query);
-	});
-
-	// Handle search events
-	$('#tree').on('search.jstree', function (e, data) {
-		console.log('Search completed: ', data.nodes.length, 'nodes found');
-	});
-	$('#tree').on('clear_search.jstree', function (e, data) {
-		console.log('Search cleared');
-	});
-
-
-	// Event saat button Pilih Acak di klik
-	$('#random').click(function () {
-		var nodes = $('#tree').jstree(true).get_selected(true);
-		console.log(nodes);
-		if (nodes.length) {
-			var random_node = nodes[Math.floor(Math.random() * nodes.length)];
-			console.log(random_node);
-
-			$('#tree').jstree('deselect_all');
-			$('#tree').jstree('select_node', random_node.id);
-		}
-	});
-
-	// Event saat button Centang Semua di klik
-	$('#check').on('click', function () {
-		$('#tree').jstree('check_all');
-	});
-
-	// Event saat button Hapus Semua Centang di klik
-	$('#uncheck').on('click', function () {
-		$('#tree').jstree('uncheck_all');
-	});
-});
-
 
 $(document).ready(function () {
 	$('#mySelect').select2();

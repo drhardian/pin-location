@@ -212,6 +212,7 @@ var treeList = $("#treelist")
 
 // Function to build table rows
 function buildTableRows(data) {
+    $('#tobrak').DataTable().destroy();
 
     // Sort JSON data by id
     data.sort(function (a, b) {
@@ -237,6 +238,17 @@ function buildTableRows(data) {
         $('<td>').text(item.Task_Completion).appendTo(row);
         $('<td>').text(item.Task_Parent_ID).appendTo(row);
     });
+
+    var tables = $('#tobrak').DataTable({
+        "lengthMenu": [5, 10, 25, 50, 75, 100],
+        "processing": true,
+        "dom": 'ltip'
+    });
+
+    $('#search-input2').on('keyup', function () {
+        tables.search(this.value).draw();
+    });
+
 }
 
 // Initialize ContextMenu
@@ -307,21 +319,9 @@ treeList.option("onNodesInitialized", function (e) {
     }
 });
 treeList.option("searchPanel.showOnlyMatches", false);
-// Handle checkbox selection
-// treeList.option("onSelectionChanged", function (selectedItems) {
-//   var selectedKeys = selectedItems.selectedRowKeys;
-//   if (selectedKeys.length > 0) {
-//     console.log("Selected row keys:", selectedKeys);
-//     // Add your custom action here
-//   }
-// });
-
-
 
 function createPoint(data) {
     // create popover templates
-    console.log(data);
-
     const popovers = data.map((item) => `
     <div id="content${item.Task_ID}" class="content ${item.position}">
     <div class="head">
@@ -333,11 +333,11 @@ function createPoint(data) {
     `).join("");
     // create item points
     const points = data.flatMap((item) =>
-       item.points ? item.points.map((point) => `
+        item.points ? item.points.map((point) => `
         <div class="item-point" data-top="${point.top}" data-left="${point.left}" data-popover="${point.popover}">
             <div><a href="#" class="toggle"></a></div>
         </div>
-        `):'' ).join("");
+        `) : '').join("");
 
     // create final HTML code
     const html = `
@@ -346,7 +346,7 @@ function createPoint(data) {
     <!-- End Popover Template -->
 
     <!-- https://www.jqueryscript.net/demo/Image-Annotation-Plugin-Scalize/img/jacket.png -->
-    <img src="pid.png" alt="" class="target" id="gambar-coordinate">
+    <img src="P&ID HQ.PNG" alt="" class="target" id="gambar-coordinate">
     <div class='wrap-selector'>
     ${points}
     </div>
@@ -355,15 +355,19 @@ function createPoint(data) {
     $('#imagepoint').empty();
     $('#imagepoint').html(html);
     scalizeInit();
+    setTimeout(function () {
+        scalizeInit();
+    }, 500);
+
 }
 
-function scalizeInit(){
-	$('.scalize').scalize({
-		styleSelector: 'circle',
-		animationPopoverIn: 'flipInY',
-		animationPopoverOut: 'flipOutY',
-		animationSelector: 'pulse2',
-	});
+function scalizeInit() {
+    $('.scalize').scalize({
+        styleSelector: 'circle',
+        animationPopoverIn: 'flipInY',
+        animationPopoverOut: 'flipOutY',
+        animationSelector: 'pulse2',
+    });
 }
 
 
