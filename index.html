@@ -7,26 +7,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet" />
-  <link rel="shortcut icon" href="https://cms.ptcs.co.id/assets/icons/ptcs.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="https://cms.ptcs.co.id/assets/icons/ptcs.ico" type="image/x-icon" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
     integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/style.min.css" />
-  <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/22.2.3/css/dx.light.css" />
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="css/dx.light.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css" />
   <link rel="stylesheet" href="css/scalize.css" />
   <link rel="stylesheet" href="css/bootstrap-4.6.2/css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/style.css" />
-  <style>
-    #treelist {
-      font-size: 13px;
-    }
-  </style>
 </head>
-
 <body>
   <div class="wrapper d-flex align-items-stretch">
     <nav id="sidebar" class="active border-right">
@@ -138,47 +131,44 @@
         </div>
       </nav>
       <!-- Tab content -->
-      <div class="tab-content mt-1 mb-5 overflow-auto custome-scroll" style="height: 800px;">
+      <div class="tab-content mt-1 mb-5 overflow-auto custome-scroll" style="height: 800px">
         <div class="tab-pane active" id="tab1">
           <div class="container">
-            <button class="zoom-btn d-block btn-sm btn-info mb-2" style="z-index: 9999;"><i
-                class="fa fa-search-plus fa-1" aria-hidden="true"></i> </button>
-            <button class="zoom-out d-block btn-sm btn-info" style="z-index: 9999;"><i class="fa fa-search-minus fa-1"
-                aria-hidden="true"></i></button>
+            <button class="zoom-btn d-block btn-sm btn-info mb-2" style="z-index: 9999">
+              <i class="fa fa-search-plus fa-1" aria-hidden="true"></i>
+            </button>
+            <button class="zoom-out d-block btn-sm btn-info" style="z-index: 9999">
+              <i class="fa fa-search-minus fa-1" aria-hidden="true"></i>
+            </button>
             <div class="row">
               <div class="col">
-                <div class="d-flex justify-content-center align-items-center" style="  width: 100%;
-                height: 100%;">
-
-                  <div id="scrool" class="overflow-auto rounded custome-scroll" style="height: 400px;width: 1080px;">
-                    <div class="scalize" id="imagepoint">
-                    </div>
+                <div class="d-flex justify-content-center align-items-center" style="width: 100%; height: 100%">
+                  <div id="scrool" class="overflow-auto rounded custome-scroll" style="height: 400px; width: 1080px">
+                    <div class="scalize" id="imagepoint"></div>
                   </div>
-
                 </div>
               </div>
             </div>
             <div class="row mt-4">
-              <div class="col-md-12 ">
+              <div class="col-md-12">
                 <div class="card shadow">
                   <div class="card-body">
-                    <div class=" clearfix">
+                    <div class="clearfix">
                       <div class="form-inline float-left">
                         <label for="find-input" class="font-weight-bold">Find</label>
                         <input type="find" class="form-control ds-input mb-1 ml-2" id="search-input"
                           placeholder="Find..." aria-label="Find for..." autocomplete="off" spellcheck="false"
                           role="combobox" aria-autocomplete="list" aria-expanded="false"
                           aria-owns="algolia-autocomplete-listbox-0" dir="auto"
-                          style="position: relative; vertical-align: top;">
-
-                      </div>                      
+                          style="position: relative; vertical-align: top" />
+                      </div>
                       <div class="form-inline float-right">
                         <label for="search-input" class="font-weight-bold">Search</label>
                         <input type="search" class="form-control ds-input mb-1 ml-2" id="search-input2"
                           placeholder="Search..." aria-label="Find for..." autocomplete="off" spellcheck="false"
                           role="combobox" aria-autocomplete="list" aria-expanded="false"
                           aria-owns="algolia-autocomplete-listbox-0" dir="auto"
-                          style="position: relative; vertical-align: top;">
+                          style="position: relative; vertical-align: top" />
                       </div>
                     </div>
                     <table class="table table-bordered mt-2 mb-3" id="tobrak">
@@ -188,31 +178,25 @@
                           <th scope="col">First</th>
                           <th scope="col">Last</th>
                           <th scope="col">Handle</th>
-                          <th scope="col">Handle</th>
-                          <th scope="col">Handle</th>
-                          <th scope="col">Handle</th>
-                          <th scope="col">Handle</th>
-                          <th scope="col">Handle</th>
-
+                          <th scope="col">A</th>
+                          <th scope="col">B</th>
+                          <th scope="col">C</th>
+                          <th scope="col">D</th>
+                          <th scope="col">E</th>
                         </tr>
                       </thead>
-                      <tbody>
-
-                      </tbody>
+                      <tbody></tbody>
                     </table>
                   </div>
                 </div>
-
               </div>
               <!-- <div class="col-md-6">
               </div> -->
             </div>
           </div>
-          <br>
-          <br>
-          <br>
-
-
+          <br />
+          <br />
+          <br />
         </div>
         <div class="tab-pane" id="tab2">
           <h2>Ini adalah isi Tab 2</h2>
@@ -246,7 +230,7 @@
         </div>
       </div>
 
-      <footer class="bg-light py-3 fixed-bottom app-main-footer ">
+      <footer class="bg-light py-3 fixed-bottom app-main-footer">
         <div class="container">
           <div class="row">
             <div class="col-md-6">
@@ -284,7 +268,8 @@
         </div>
         <li>
           <a class="iconkanans" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false"
-            aria-controls="multiCollapseExample2"><span class="fa fa-tasks"></span> Task
+            aria-controls="multiCollapseExample2">
+            <span class="fa fa-tasks"></span> Task
             <span class="badge badge-danger ml-2" id="taskbadge">0</span>
           </a>
         </li>
@@ -335,14 +320,10 @@
     </nav>
   </div>
 
-
   <div class="float">
     <div class="card">
-      <div class="card-header font-weight-bold">
-        Featured
-      </div>
-      <div class="card-body" id="floating-detail">
-      </div>
+      <div class="card-header font-weight-bold">Featured</div>
+      <div class="card-body" id="floating-detail"></div>
     </div>
     <a href="javascript:void(0);" class="event-close-btn">Hide</a>
   </div>
@@ -350,21 +331,18 @@
   <!-- <script src="js/jquery.min.js"></script> -->
   <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
     crossorigin="anonymous"></script>
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap-4.6.2/js/bootstrap.min.js"></script>
+  <!-- <script src="js/popper.js"></script> -->
+  <script src="js/bootstrap-4.6.2/js/bootstrap.bundle.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
-  <script src="https://cdn3.devexpress.com/jslib/22.2.3/js/dx.all.js"></script>
-  <script src="https:////cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-  <script src="https://johannburkard.de/resources/Johann/jquery.highlight-5.js"></script>
+  <script src="js/dx.all.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script src="js/jquery.highlight-5.js"></script>
   <script src="js/scalize.js"></script>
   <script src="js/script.js"></script>
   <script src="js/main.js"></script>
 </body>
 
 </html>
-
-
 
 <!-- Catatan -->
 

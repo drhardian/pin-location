@@ -6,6 +6,10 @@
 *
 * Copyright (c) 2012 - 2022 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
+<link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/22.2.3/css/dx.light.css" />
+https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.woff2
+https://cdn3.devexpress.com/jslib/22.2.3/css/icons/dxicons.woff2
+
 */
 .dx-validationsummary-item {
   cursor: pointer;

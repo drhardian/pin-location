@@ -605,11 +605,6 @@ a[data-toggle="collapse"] {
 .navrounded {
   border-radius: 50px;
 }
-
-.jstree-anchor {
-  font-size: 0.88rem;
-}
-
 .float {
   color: #000;
   position: absolute;
@@ -738,4 +733,11 @@ table.dataTable td, table.dataTable th {
 .container {
   /* max-width: 1140px; */
   max-width: 1740px;
+}
+
+.scrool {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 1080px;
 }

@@ -30,6 +30,15 @@ $(document).ready(function () {
 		$("#tobrak tbody").highlight($("#search-input").val());
 	}
 
+	$('#tobrak').on('page.dt', function () {
+		// kode yang ingin dijalankan saat halaman berubah
+		console.log('Halaman telah berubah');
+		console.log('Masuk');
+		timer = setTimeout(function () {
+			highlighted_data();
+		}, 1000);
+	});
+
 	!(function (d, s, id) {
 		var js,
 			fjs = d.getElementsByTagName(s)[0];
@@ -410,3 +419,46 @@ function showDataDetail(event) {
 
 }
 
+function scrollDragAble() {
+	const ele = document.getElementById('scrool');
+	ele.style.cursor = 'grab';
+
+	let pos = { top: 0, left: 0, x: 0, y: 0 };
+
+	const mouseDownHandler = function (e) {
+		ele.style.cursor = 'grabbing';
+		ele.style.userSelect = 'none';
+
+		pos = {
+			left: ele.scrollLeft,
+			top: ele.scrollTop,
+			// Get the current mouse position
+			x: e.clientX,
+			y: e.clientY,
+		};
+
+		document.addEventListener('mousemove', mouseMoveHandler);
+		document.addEventListener('mouseup', mouseUpHandler);
+	};
+
+	const mouseMoveHandler = function (e) {
+		// How far the mouse has been moved
+		const dx = e.clientX - pos.x;
+		const dy = e.clientY - pos.y;
+
+		// Scroll the element
+		ele.scrollTop = pos.top - dy;
+		ele.scrollLeft = pos.left - dx;
+	};
+
+	const mouseUpHandler = function () {
+		ele.style.cursor = 'grab';
+		ele.style.removeProperty('user-select');
+
+		document.removeEventListener('mousemove', mouseMoveHandler);
+		document.removeEventListener('mouseup', mouseUpHandler);
+	};
+
+	// Attach the handler
+	ele.addEventListener('mousedown', mouseDownHandler);
+};

@@ -15,7 +15,7 @@ const tasks_data = [
         Task_ID: 2,
         Task_Assigned_Employee_ID: 7,
         Task_Owner_ID: 1,
-        Task_Subject: "Node DX 01",
+        Task_Subject: "Node DX 019",
         Task_Start_Date: "2015-01-15T00:00:00",
         Task_Due_Date: "2015-01-31T00:00:00",
         Task_Status: "Completed",
@@ -242,10 +242,15 @@ function buildTableRows(data) {
     var tables = $('#tobrak').DataTable({
         "lengthMenu": [5, 10, 25, 50, 75, 100],
         "processing": true,
-        "dom": 'ltip'
+        "search": {
+            "smart": false
+          },
+        "dom": 'lrtip'
     });
 
     $('#search-input2').on('keyup', function () {
+        // console.log(this.value)
+        // tables.search(this.value, true, false).draw();
         tables.search(this.value).draw();
     });
 
@@ -347,7 +352,7 @@ function createPoint(data) {
 
     <!-- https://www.jqueryscript.net/demo/Image-Annotation-Plugin-Scalize/img/jacket.png -->
     <img src="P&ID HQ.PNG" alt="" class="target" id="gambar-coordinate">
-    <div class='wrap-selector'>
+    <div id="scrollableDiv" class='wrap-selector'>
     ${points}
     </div>
     `;
@@ -357,6 +362,7 @@ function createPoint(data) {
     scalizeInit();
     setTimeout(function () {
         scalizeInit();
+        scrollDragAble();
     }, 500);
 
 }
