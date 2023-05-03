@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Viewport Navigator</title>
+</head>
+
+<body>
+  <div id="openseadragon1" style="width: 800px; height: 600px;"></div>
+  <div id="overlysx">
+    <img id="right-arrow-overlay" src="http://upload.wikimedia.org/wikipedia/commons/7/7a/Red_Arrow_Right.svg"
+      alt="Right arrow" width="20">
+    <div id=right-arrow-overlay-2 data-name="Perxcobaan">
+      <img src="http://upload.wikimedia.org/wikipedia/commons/7/7a/Red_Arrow_Right.svg" alt="Right arrow" width="20">
+    </div>
+  </div>
+  <label class="switch">
+    <input type="checkbox" id="toggle-button">
+    <span class="slider round"></span>
+  </label>
+
+  <button id="geoJump">Jump!</button>
+
+  <style>
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked+.slider {
+      background-color: #2196F3;
+    }
+
+    input:focus+.slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked+.slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+
+    .slider.round {
+      border-radius: 34px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
+  </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.0.0/openseadragon.min.js"></script>
+  <script type="text/javascript">
+    var viewer = OpenSeadragon({
+      id: "openseadragon1",
+      tileSources: [{
+        type: 'image',
+        url: '../P&ID_HQpixel.png',
+        overlays: [{
+          id: 'right-arrow-overlay',
+          x: 0.2008,
+          y: 0.4778,
+          placement: 'RIGHT',
+          checkResize: true
+        }, {
+          id: 'right-arrow-overlay-2',
+          x: 0.2308,
+          y: 0.4378,
+          placement: 'RIGHT',
+          checkResize: true
+        }],
+      }],
+      showNavigator: true,
+      prefixUrl: "https://openseadragon.github.io/openseadragon/images/",
+    });
+    viewer.addHandler('open', () => {
+      new OpenSeadragon.MouseTracker({
+          element: document.getElementById('right-arrow-overlay-2'),
+          clickHandler: e => alert('Element clicked! ' + e.originalEvent.target.dataset.name) , //console.log(e.originalEvent.target.dataset.name)
+          contextMenuHandler: e => alert('Context menu fired! ' + e.originalEvent.target.id),
+        });
+
+    });
+
+    viewer.addHandler('canvas-click', function (event) {
+      const toggleButton = document.getElementById("toggle-button");
+      // toggleButton.addEventListener("change", function () {
+      if (toggleButton.checked) {
+        let userInput = prompt("Please enter your name:");
+
+        // get the current mouse position in the viewport coordinates
+        var viewportPoint = viewer.viewport.pointFromPixel(event.position);
+        console.log(viewportPoint);
+        // get the current image coordinates based on the viewport position
+        var imagePoint = viewer.viewport.viewportToImageCoordinates(viewportPoint);
+        console.log(imagePoint);
+        var number = Math.floor((Math.random() * 300) + 1);
+        var elt = document.createElement("div");
+        elt.setAttribute("data-name", "Name : " + userInput);
+        elt.id = 'runtime-overlay' + number;
+        elt.className = "highlight";
+        var image = document.createElement("img")
+        image.id = 'right-arrow-overlay';
+        image.src = 'http://upload.wikimedia.org/wikipedia/commons/7/7a/Red_Arrow_Right.svg';
+        image.width = '20';
+        elt.appendChild(image);
+        viewer.addOverlay({
+          element: elt,
+          px: imagePoint.x,
+          py: imagePoint.y,
+          checkResize: false,
+          placement: OpenSeadragon.OverlayPlacement.RIGHT
+        });
+
+        var tracker = new OpenSeadragon.MouseTracker({
+          element: elt,
+          clickHandler: e => alert('Element clicked! ' + e.originalEvent.target.dataset.name), //console.log(e.originalEvent.target.dataset.name)
+          contextMenuHandler: e => alert('Context menu fired! ' + e.originalEvent.target.id),
+
+        });
+      } else {
+        console.log("Toggle button is inactive");
+      }
+      // });
+
+    });
+
+
+    // $("#geoJump").click(function () {
+    //   var elt = document.createElement("div");
+    //   elt.id = 'runtime-overlay';
+    //   elt.className = "highlight";
+    //   var image = document.createElement("img")
+    //   image.id = 'right-arrow-overlay';
+    //   image.src = 'http://upload.wikimedia.org/wikipedia/commons/7/7a/Red_Arrow_Right.svg';
+    //   image.width = '20';
+    //   elt.appendChild(image);
+    //   viewer.addOverlay({
+    //     element: elt,
+    //     px: 1000,
+    //     py: 2000,
+    //     checkResize: false,
+    //     placement: OpenSeadragon.OverlayPlacement.RIGHT
+    //   });
+    // });
+    viewer.gestureSettingsMouse.clickToZoom = true / false
+  </script>
+</body>
+
+</html>

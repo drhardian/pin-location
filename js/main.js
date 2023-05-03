@@ -1,16 +1,16 @@
 
 $(document).ready(function () {
 	// Listen for click events on the navbar menu items
-	$('#sidebar .list-unstyled a').on('click', function (e) {
-		// Remove the active class from all menu items
-		$('#sidebar .list-unstyled li').removeClass('left-menu-active');
+	// $('#sidebar .list-unstyled a').on('click', function (e) {
+	// 	// Remove the active class from all menu items
+	// 	$('#sidebar .list-unstyled li').removeClass('left-menu-active');
 
-		// Add the active class to the clicked menu item
-		$(this).parent().addClass('left-menu-active');
+	// 	// Add the active class to the clicked menu item
+	// 	$(this).parent().addClass('left-menu-active');
 
-		// Prevent the default link behavior
-		e.preventDefault();
-	});
+	// 	// Prevent the default link behavior
+	// 	e.preventDefault();
+	// });
 
 	var timer;
 
